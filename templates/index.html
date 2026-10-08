@@ -315,4 +315,752 @@ button{background:none;border:none;cursor:pointer}
 .acc-foot .meta span{display:inline-flex;align-items:center;gap:5px}
 .acc-foot .meta i{color:var(--tx-4);font-size:10px}
 .acc-acts{display:flex;gap:6px}
-.acc-acts .ib{width:30px;height:30px;font-size:12px;border
+.acc-acts .ib{width:30px;height:30px;font-size:12px;border-radius:7px}
+
+/* ============ EMPTY ============ */
+.empty{text-align:center;padding:80px 20px;color:var(--tx-4);grid-column:1/-1}
+.empty-ico{width:72px;height:72px;margin:0 auto 16px;border-radius:20px;background:var(--bg-2);border:1px solid var(--bd-1);display:grid;place-items:center;font-size:26px;color:var(--tx-4)}
+.empty h3{font-size:15px;font-weight:700;color:var(--tx-2);margin-bottom:6px}
+.empty p{font-size:13px;color:var(--tx-3)}
+
+/* ============ LOGS PANEL ============ */
+.logs-panel{
+  background:var(--bg-1);border:1px solid var(--bd-1);border-radius:var(--r-3);
+  overflow:hidden;margin-top:24px;
+}
+.logs-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--bd-1);flex-wrap:wrap;gap:10px}
+.logs-head h2{font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:9px}
+.logs-head h2 i{color:var(--tx-3)}
+.log-filters{display:flex;gap:6px;flex-wrap:wrap}
+.lf{padding:5px 10px;border-radius:7px;font-size:11px;font-weight:600;background:var(--bg-2);border:1px solid var(--bd-2);color:var(--tx-3);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:5px}
+.lf:hover{color:var(--tx-1)}
+.lf.active{background:var(--bg-3);color:var(--tx-1);border-color:var(--bd-3)}
+.lf .d{width:5px;height:5px;border-radius:50%;background:currentColor}
+.lf[data-lvl="success"] .d{background:var(--grn)}.lf[data-lvl="error"] .d{background:var(--red)}
+.lf[data-lvl="warning"] .d{background:var(--amb)}.lf[data-lvl="info"] .d{background:var(--cyn)}
+.logs{
+  background:var(--bg-0);padding:14px;max-height:480px;overflow-y:auto;
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;
+  display:flex;flex-direction:column;gap:5px;
+}
+.log{display:flex;gap:10px;line-height:1.6;word-break:break-word;padding:3px 0;animation:logIn .25s ease backwards;border-radius:4px;transition:background .2s}
+.log:hover{background:var(--bg-2)}
+@keyframes logIn{from{opacity:0;transform:translateX(-4px)}to{opacity:1;transform:translateX(0)}}
+.log-time{color:var(--tx-4);flex-shrink:0;font-weight:500}
+.log-msg{color:var(--tx-2)}
+.log-msg.success{color:var(--grn)}.log-msg.error{color:var(--red)}
+.log-msg.warning{color:var(--amb)}.log-msg.info{color:var(--cyn)}
+
+/* ============ MODAL ============ */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.ov.show{display:flex;animation:fadeIn .2s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  background:var(--bg-1);border:1px solid var(--bd-2);border-radius:var(--r-4);
+  width:100%;max-width:460px;animation:modalIn .35s var(--ease-2);
+  box-shadow:var(--sh-3);overflow:hidden;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.m-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--bd-1)}
+.m-head h3{font-size:15.5px;font-weight:700;display:flex;align-items:center;gap:10px}
+.m-body{padding:22px}
+.m-foot{padding:16px 22px;border-top:1px solid var(--bd-1);display:flex;justify-content:flex-end;gap:8px;background:var(--bg-0)}
+.field{margin-bottom:16px}.field:last-child{margin-bottom:0}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--tx-2);margin-bottom:7px}
+.field input,.field textarea{
+  width:100%;background:var(--bg-0);border:1px solid var(--bd-2);border-radius:9px;
+  padding:11px 13px;color:var(--tx-1);font-size:13.5px;outline:none;transition:all .2s var(--ease);
+}
+.field input:focus,.field textarea:focus{border-color:var(--acc);background:var(--bg-1);box-shadow:0 0 0 3px var(--acc-bg)}
+.field input::placeholder,.field textarea::placeholder{color:var(--tx-4)}
+.field textarea{resize:vertical;min-height:80px;font-family:'JetBrains Mono',monospace;font-size:12px}
+.tabs{display:flex;gap:4px;background:var(--bg-0);padding:4px;border-radius:10px;border:1px solid var(--bd-1);margin-bottom:20px}
+.tab{flex:1;padding:9px;text-align:center;font-size:12.5px;font-weight:600;color:var(--tx-3);cursor:pointer;border-radius:7px;transition:all .2s var(--ease);display:flex;align-items:center;justify-content:center;gap:7px}
+.tab:hover{color:var(--tx-2)}
+.tab.active{background:var(--bg-3);color:var(--tx-1);box-shadow:var(--sh-1)}
+
+/* ============ TOASTS ============ */
+.toasts{position:fixed;top:20px;right:20px;z-index:200;display:flex;flex-direction:column;gap:10px;max-width:360px}
+.toast{
+  background:var(--bg-1);border:1px solid var(--bd-2);border-radius:11px;
+  padding:13px 16px;display:flex;align-items:flex-start;gap:11px;font-size:13px;
+  box-shadow:var(--sh-3);animation:toastIn .4s var(--ease-2);position:relative;overflow:hidden;
+}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px) scale(.9)}to{opacity:1;transform:translateX(0) scale(1)}}
+.toast.out{animation:toastOut .3s var(--ease) forwards}
+@keyframes toastOut{to{opacity:0;transform:translateX(40px) scale(.9)}}
+.toast::before{content:'';position:absolute;bottom:0;left:0;height:2px;background:var(--acc);animation:toastBar 3s linear forwards}
+@keyframes toastBar{from{width:100%}to{width:0}}
+.toast.success::before{background:var(--grn)}.toast.error::before{background:var(--red)}
+.toast.success .ti{color:var(--grn)}.toast.error .ti{color:var(--red)}.toast.info .ti{color:var(--cyn)}
+.toast .ti{font-size:15px;flex-shrink:0;margin-top:1px}
+.toast .tt{font-weight:600;line-height:1.4}
+
+/* ============ FOOTER ============ */
+.foot{padding:22px 28px;border-top:1px solid var(--bd-1);font-size:12px;color:var(--tx-4);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.foot strong{color:var(--tx-2);font-weight:700}
+.foot .ver{font-family:'JetBrains Mono',monospace;font-size:11px}
+
+/* ============ MOBILE ============ */
+.mob-btn{display:none}
+@media (max-width:900px){
+  .app{grid-template-columns:1fr}
+  .sb{position:fixed;left:0;top:0;z-index:90;width:260px;transform:translateX(-100%);transition:transform .3s var(--ease)}
+  .sb.open{transform:translateX(0);box-shadow:var(--sh-3)}
+  .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:80;backdrop-filter:blur(4px)}
+  .sb-overlay.show{display:block}
+  .mob-btn{display:inline-grid}
+  .ct{padding:18px 16px 40px}
+  .tb{padding:0 16px;height:60px}
+  .acc-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat-val{font-size:24px}
+  .toolbar{padding:10px}
+  .search{min-width:100%}
+  .toasts{left:16px;right:16px;max-width:none}
+}
+@media (max-width:520px){
+  .stats{grid-template-columns:1fr}
+  .tb h1 .crumb{display:none}
+}
+.hidden{display:none!important}
+</style>
+</head>
+<body data-theme="dark">
+<!-- AMBIENT BG -->
+<div class="bg-orbs">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+</div>
+<div class="bg-grid"></div>
+
+<!-- SVG GRADIENT DEFS -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="app">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sb" id="sb">
+    <div class="brand">
+      <div class="brand-logo"><i class="fa-solid fa-bolt"></i></div>
+      <div class="brand-txt">CYRUSSS<small>Bot Panel v3</small></div>
+    </div>
+
+    <div class="nav-sec">Dashboard</div>
+    <div class="nav-i active" data-view="overview">
+      <i class="fa-solid fa-gauge-high"></i><span>Overview</span>
+    </div>
+    <div class="nav-i" data-view="accounts">
+      <i class="fa-solid fa-users"></i><span>Accounts</span>
+      <span class="cnt" id="nav-cnt">0</span>
+    </div>
+    <div class="nav-i" data-view="logs">
+      <i class="fa-solid fa-terminal"></i><span>Logs</span>
+    </div>
+
+    <div class="nav-sec">System</div>
+    <div class="nav-i" onclick="refreshAll()">
+      <i class="fa-solid fa-rotate"></i><span>Refresh Data</span>
+    </div>
+    <div class="nav-i" onclick="clearLogsView()">
+      <i class="fa-solid fa-broom"></i><span>Clear View</span>
+    </div>
+    <div class="nav-i" onclick="toggleTheme()">
+      <i class="fa-solid fa-circle-half-stroke"></i><span>Toggle Theme</span>
+    </div>
+
+    <div class="sb-foot">
+      <div class="sys-status"><span class="dot"></span><span>All Systems Online</span></div>
+      <div>v3.0.0 · <strong style="color:var(--tx-3)">CYRUSSS</strong></div>
+    </div>
+  </aside>
+
+  <div class="sb-overlay" id="sbOv" onclick="closeSb()"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <div class="tb">
+      <h1>
+        <button class="ib mob-btn" onclick="openSb()"><i class="fa-solid fa-bars"></i></button>
+        <span class="crumb">Dashboard</span>
+        <i class="fa-solid fa-chevron-right" style="font-size:9px;color:var(--tx-4)"></i>
+        <span id="page-title">Overview</span>
+      </h1>
+      <div class="tb-act">
+        <button class="ib" id="ref-btn" onclick="refreshAll()" title="Refresh"><i class="fa-solid fa-rotate"></i></button>
+        <button class="ib" onclick="toggleTheme()" title="Theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+        <button class="btn btn-primary" onclick="openModal()"><i class="fa-solid fa-plus"></i><span>Add Account</span></button>
+      </div>
+    </div>
+
+    <div class="ct">
+      <!-- STATS -->
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-top">
+            <div class="stat-lbl"><i class="fa-solid fa-users"></i> Accounts</div>
+            <div class="stat-ico cyn"><i class="fa-solid fa-users"></i></div>
+          </div>
+          <div class="stat-val cyn" id="s-acc">0</div>
+          <div class="stat-sub">Active sessions running</div>
+          <div class="spark" id="sp-acc"></div>
+        </div>
+        <div class="stat">
+          <div class="stat-top">
+            <div class="stat-lbl"><i class="fa-solid fa-arrow-trend-up"></i> EXP Gained</div>
+            <div class="stat-ico grn"><i class="fa-solid fa-bolt"></i></div>
+          </div>
+          <div class="stat-val grn" id="s-exp">+0</div>
+          <div class="stat-sub">Total experience earned</div>
+          <div class="spark" id="sp-exp"></div>
+        </div>
+        <div class="stat">
+          <div class="stat-top">
+            <div class="stat-lbl"><i class="fa-solid fa-gamepad"></i> Matches</div>
+            <div class="stat-ico pur"><i class="fa-solid fa-crosshairs"></i></div>
+          </div>
+          <div class="stat-val pur" id="s-mat">0</div>
+          <div class="stat-sub">Games played today</div>
+          <div class="spark" id="sp-mat"></div>
+        </div>
+        <div class="stat">
+          <div class="stat-top">
+            <div class="stat-lbl"><i class="fa-solid fa-clock"></i> Uptime</div>
+            <div class="stat-ico amb"><i class="fa-solid fa-hourglass-half"></i></div>
+          </div>
+          <div class="stat-val amb" id="s-up">00:00:00</div>
+          <div class="stat-sub">Server running time</div>
+          <div class="spark" id="sp-up"></div>
+        </div>
+      </div>
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <div class="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="q" placeholder="Search by UID or nickname..." oninput="renderAcc()">
+        </div>
+        <div class="divider"></div>
+        <div class="chips" id="filters">
+          <button class="chip active" data-f="all">All <span class="badge" id="c-all">0</span></button>
+          <button class="chip" data-f="online">Online <span class="badge" id="c-online">0</span></button>
+          <button class="chip" data-f="match">Match <span class="badge" id="c-match">0</span></button>
+          <button class="chip" data-f="searching">Searching <span class="badge" id="c-search">0</span></button>
+          <button class="chip" data-f="error">Error <span class="badge" id="c-error">0</span></button>
+        </div>
+        <div class="divider"></div>
+        <div class="view-tog">
+          <button class="active" data-v="grid" onclick="setView('grid')"><i class="fa-solid fa-grip"></i></button>
+          <button data-v="list" onclick="setView('list')"><i class="fa-solid fa-list"></i></button>
+        </div>
+      </div>
+
+      <!-- BULK BAR -->
+      <div class="bulk" id="bulk">
+        <i class="fa-solid fa-check-double" style="color:var(--acc)"></i>
+        <div class="bulk-info"><b id="bulk-n">0</b> accounts selected</div>
+        <div class="bulk-actions">
+          <button class="btn btn-sm" onclick="bulkRefresh()"><i class="fa-solid fa-rotate"></i> Refresh</button>
+          <button class="btn btn-sm btn-danger" onclick="bulkDelete()"><i class="fa-solid fa-trash"></i> Delete</button>
+          <button class="btn btn-sm btn-ghost" onclick="clearSel()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+
+      <!-- ACCOUNTS GRID -->
+      <div class="acc-grid" id="acc-grid">
+        <div class="empty">
+          <div class="empty-ico"><i class="fa-solid fa-spinner fa-spin"></i></div>
+          <h3>Loading accounts...</h3>
+          <p>Fetching data from server</p>
+        </div>
+      </div>
+
+      <!-- LOGS PANEL -->
+      <div class="logs-panel">
+        <div class="logs-head">
+          <h2><i class="fa-solid fa-terminal"></i> Live Logs <span class="tag" id="log-cnt" style="font-size:11px;padding:3px 9px;background:var(--bg-3);border-radius:6px;font-family:'JetBrains Mono',monospace;color:var(--tx-3)">0</span></h2>
+          <div class="log-filters" id="log-filters">
+            <button class="lf active" data-lvl="all"><span class="d"></span>All</button>
+            <button class="lf" data-lvl="success"><span class="d"></span>Success</button>
+            <button class="lf" data-lvl="info"><span class="d"></span>Info</button>
+            <button class="lf" data-lvl="warning"><span class="d"></span>Warn</button>
+            <button class="lf" data-lvl="error"><span class="d"></span>Error</button>
+          </div>
+        </div>
+        <div class="logs" id="logs">
+          <div class="empty" style="padding:40px 20px">
+            <div class="empty-ico" style="width:56px;height:56px;font-size:20px"><i class="fa-solid fa-spinner fa-spin"></i></div>
+            <p>Waiting for logs...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <span>© 2025 <strong>CYRUSSS</strong> · All rights reserved</span>
+      <span class="ver">v3.0.0 · FreeFire Level Up Bot</span>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="ov" id="modal">
+  <div class="modal">
+    <div class="m-head">
+      <h3><i class="fa-solid fa-user-plus" style="color:var(--acc)"></i> Add New Account</h3>
+      <button class="ib" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="form" onsubmit="submitForm(event)">
+      <div class="m-body">
+        <div class="tabs">
+          <div class="tab active" data-type="guest" onclick="setType('guest')"><i class="fa-solid fa-user"></i> Guest</div>
+          <div class="tab" data-type="token" onclick="setType('token')"><i class="fa-solid fa-key"></i> Token</div>
+        </div>
+        <input type="hidden" id="type" value="guest">
+        <div id="g-fields">
+          <div class="field">
+            <label>Guest UID</label>
+            <input type="text" id="uid" placeholder="4276263484" autocomplete="off">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="text" id="pass" placeholder="Drax123_XXXXXXXXXX" autocomplete="off">
+          </div>
+        </div>
+        <div id="t-fields" class="hidden">
+          <div class="field">
+            <label>Access Token</label>
+            <textarea id="tok" placeholder="Paste your access token here..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="m-foot">
+        <button type="button" class="btn" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="sub-btn"><i class="fa-solid fa-plus"></i> Add Account</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<script>
+/* ============ STATE ============ */
+let STATE = {
+  accounts: [],
+  logs: [],
+  uptime: 0,
+  lastSync: 0,
+  view: 'grid',
+  filter: 'all',
+  query: '',
+  selected: new Set(),
+  logFilter: 'all',
+  logsCleared: false,
+};
+
+/* ============ TOASTS ============ */
+function toast(msg, type='info'){
+  const icons = {success:'fa-circle-check',error:'fa-circle-xmark',info:'fa-circle-info',warning:'fa-triangle-exclamation'};
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.innerHTML = `<i class="fa-solid ${icons[type]||icons.info} ti"></i><div class="tt">${msg}</div>`;
+  document.getElementById('toasts').appendChild(el);
+  setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),300);},3000);
+}
+
+/* ============ THEME ============ */
+function toggleTheme(){
+  const cur = document.body.dataset.theme;
+  document.body.dataset.theme = cur === 'dark' ? 'light' : 'dark';
+  toast(`Switched to ${document.body.dataset.theme} mode`, 'info');
+}
+
+/* ============ MOBILE SIDEBAR ============ */
+function openSb(){document.getElementById('sb').classList.add('open');document.getElementById('sbOv').classList.add('show');}
+function closeSb(){document.getElementById('sb').classList.remove('open');document.getElementById('sbOv').classList.remove('show');}
+
+/* ============ MODAL ============ */
+function openModal(){document.getElementById('modal').classList.add('show');setTimeout(()=>document.getElementById('uid').focus(),100);}
+function closeModal(){document.getElementById('modal').classList.remove('show');}
+function setType(t){
+  document.getElementById('type').value = t;
+  document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active',el.dataset.type===t));
+  document.getElementById('g-fields').classList.toggle('hidden',t!=='guest');
+  document.getElementById('t-fields').classList.toggle('hidden',t!=='token');
+}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeModal();closeSb();}
+});
+
+/* ============ SUBMIT ============ */
+async function submitForm(e){
+  e.preventDefault();
+  const t = document.getElementById('type').value;
+  const btn = document.getElementById('sub-btn');
+  let payload;
+  if(t==='guest'){
+    const uid = document.getElementById('uid').value.trim();
+    const password = document.getElementById('pass').value.trim();
+    if(!uid||!password) return toast('UID and Password required','error');
+    payload = {uid,password};
+  } else {
+    const token = document.getElementById('tok').value.trim();
+    if(!token) return toast('Token required','error');
+    payload = {token};
+  }
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Adding...';
+  try{
+    const r = await fetch('/api/account/add',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const d = await r.json();
+    if(d.status==='ok'){
+      toast('Account added successfully','success');
+      closeModal();
+      document.getElementById('form').reset();
+      setType('guest');
+      fetchStats();
+    } else toast(d.error||'Failed to add','error');
+  }catch(err){toast('Network error','error');}
+  finally{btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-plus"></i> Add Account';}
+}
+
+/* ============ ACTIONS ============ */
+async function deleteAcc(uid,ev){
+  if(ev) ev.stopPropagation();
+  if(!confirm('Remove account '+uid+'?')) return;
+  try{
+    await fetch('/api/account/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid})});
+    toast('Account removed','success');
+    fetchStats();
+  }catch(e){toast('Delete failed','error');}
+}
+async function refreshAcc(uid,ev){
+  if(ev) ev.stopPropagation();
+  try{
+    await fetch('/api/account/refresh',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid})});
+    toast('Refreshing '+uid,'info');
+    fetchStats();
+  }catch(e){toast('Refresh failed','error');}
+}
+function refreshAll(){
+  const btn = document.getElementById('ref-btn');
+  btn.classList.add('spin');
+  fetchStats().finally(()=>setTimeout(()=>btn.classList.remove('spin'),600));
+  toast('Refreshing data...','info');
+}
+function clearLogsView(){
+  document.getElementById('logs').innerHTML = '<div class="empty" style="padding:40px 20px"><div class="empty-ico" style="width:56px;height:56px;font-size:20px"><i class="fa-solid fa-inbox"></i></div><p>View cleared</p></div>';
+  STATE.logsCleared = true;
+  toast('Logs view cleared','info');
+  setTimeout(()=>{STATE.logsCleared=false;},1500);
+}
+
+/* ============ SELECTION ============ */
+function toggleSel(uid,ev){
+  if(ev) ev.stopPropagation();
+  if(STATE.selected.has(uid)) STATE.selected.delete(uid);
+  else STATE.selected.add(uid);
+  updateBulk();
+  renderAcc();
+}
+function clearSel(){STATE.selected.clear();updateBulk();renderAcc();}
+function updateBulk(){
+  const n = STATE.selected.size;
+  document.getElementById('bulk').classList.toggle('show',n>0);
+  document.getElementById('bulk-n').textContent = n;
+}
+async function bulkDelete(){
+  if(!confirm(`Delete ${STATE.selected.size} accounts?`)) return;
+  const uids = [...STATE.selected];
+  for(const uid of uids){
+    try{await fetch('/api/account/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid})});}catch(e){}
+  }
+  toast(`Deleted ${uids.length} accounts`,'success');
+  clearSel();
+  fetchStats();
+}
+async function bulkRefresh(){
+  const uids = [...STATE.selected];
+  for(const uid of uids){
+    try{await fetch('/api/account/refresh',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid})});}catch(e){}
+  }
+  toast(`Refreshed ${uids.length} accounts`,'info');
+  clearSel();
+  fetchStats();
+}
+
+/* ============ VIEW / FILTER ============ */
+function setView(v){
+  STATE.view = v;
+  document.querySelectorAll('.view-tog button').forEach(b=>b.classList.toggle('active',b.dataset.v===v));
+  document.getElementById('acc-grid').classList.toggle('list',v==='list');
+}
+document.querySelectorAll('#filters .chip').forEach(c=>{
+  c.addEventListener('click',()=>{
+    document.querySelectorAll('#filters .chip').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+    STATE.filter = c.dataset.f;
+    renderAcc();
+  });
+});
+document.querySelectorAll('#log-filters .lf').forEach(c=>{
+  c.addEventListener('click',()=>{
+    document.querySelectorAll('#log-filters .lf').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active');
+    STATE.logFilter = c.dataset.lvl;
+    renderLogs();
+  });
+});
+
+/* ============ NAV ============ */
+document.querySelectorAll('.nav-i[data-view]').forEach(item=>{
+  item.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-i').forEach(n=>n.classList.remove('active'));
+    item.classList.add('active');
+    document.getElementById('page-title').textContent = item.querySelector('span').textContent;
+    closeSb();
+  });
+});
+
+/* ============ HELPERS ============ */
+function fmt(n){return (n||0).toLocaleString();}
+function fmtTime(sec){
+  sec = Math.max(0,Math.floor(sec));
+  const d = Math.floor(sec/86400);
+  const h = String(Math.floor((sec%86400)/3600)).padStart(2,'0');
+  const m = String(Math.floor((sec%3600)/60)).padStart(2,'0');
+  const s = String(sec%60).padStart(2,'0');
+  return d>0?`${d}d ${h}:${m}:${s}`:`${h}:${m}:${s}`;
+}
+function esc(t){
+  if(t==null) return '';
+  return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function statusInfo(s){
+  switch(s){
+    case 'IN_MATCH': return {cls:'match',txt:'In Match'};
+    case 'SEARCHING': return {cls:'searching',txt:'Searching'};
+    case 'ERROR': return {cls:'error',txt:'Error'};
+    case 'CONNECTING': return {cls:'connecting',txt:'Connecting'};
+    default: return {cls:'online',txt:'Online'};
+  }
+}
+function sparkline(id,seed){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const bars = [];
+  for(let i=0;i<14;i++){
+    const h = 20 + ((Math.sin(seed+i*0.7)+1)/2)*80;
+    bars.push(`<span style="height:${h}%;background:var(--bd-2);animation-delay:${i*0.03}s"></span>`);
+  }
+  el.innerHTML = bars.join('');
+}
+
+/* ============ RENDER ACCOUNTS ============ */
+function renderAcc(){
+  const grid = document.getElementById('acc-grid');
+  const q = STATE.query.toLowerCase().trim();
+  let list = STATE.accounts;
+
+  // filter
+  if(STATE.filter !== 'all'){
+    list = list.filter(a=>{
+      const st = (a.status||'').toLowerCase();
+      if(STATE.filter==='online') return st==='online'||st===''||st==='active';
+      if(STATE.filter==='match') return st==='in_match';
+      if(STATE.filter==='searching') return st==='searching';
+      if(STATE.filter==='error') return st==='error';
+      return true;
+    });
+  }
+  // search
+  if(q){
+    list = list.filter(a=>
+      String(a.uid||'').toLowerCase().includes(q) ||
+      String(a.nickname||'').toLowerCase().includes(q) ||
+      String(a.account_id||'').toLowerCase().includes(q)
+    );
+  }
+
+  // update counts
+  const counts = {all:STATE.accounts.length,online:0,match:0,searching:0,error:0};
+  STATE.accounts.forEach(a=>{
+    const st = (a.status||'').toLowerCase();
+    if(st==='in_match') counts.match++;
+    else if(st==='searching') counts.searching++;
+    else if(st==='error') counts.error++;
+    else counts.online++;
+  });
+  document.getElementById('c-all').textContent = counts.all;
+  document.getElementById('c-online').textContent = counts.online;
+  document.getElementById('c-match').textContent = counts.match;
+  document.getElementById('c-search').textContent = counts.searching;
+  document.getElementById('c-error').textContent = counts.error;
+  document.getElementById('nav-cnt').textContent = counts.all;
+
+  // empty
+  if(!list.length){
+    grid.innerHTML = `
+      <div class="empty">
+        <div class="empty-ico"><i class="fa-solid fa-inbox"></i></div>
+        <h3>${q?'No matches found':'No accounts running'}</h3>
+        <p>${q?'Try a different search term':'Click "Add Account" to get started'}</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map((a,i)=>{
+    const st = statusInfo(a.status);
+    const gained = a.gained_exp||0;
+    const cur = a.current_exp||0;
+    const pct = Math.min(100,Math.max(4,((cur%1000)/1000)*100));
+    const ringCirc = 2*Math.PI*24;
+    const ringOff = ringCirc - (pct/100)*ringCirc;
+    const sel = STATE.selected.has(a.uid);
+    return `
+      <div class="acc ${sel?'selected':''}" style="animation-delay:${Math.min(i*0.03,0.5)}s" onclick="toggleSel('${a.uid}',event)">
+        <div class="acc-head">
+          <div class="acc-user">
+            <div class="checkbox"><i class="fa-solid fa-check"></i></div>
+            <div class="avatar">${esc((a.nickname||'U').charAt(0).toUpperCase())}</div>
+            <div class="acc-info">
+              <div class="acc-name">
+                <span class="nm">${esc(a.nickname||'Unknown')}</span>
+                <span class="region">${esc(a.region||'IND')}</span>
+              </div>
+              <div class="acc-uid">UID ${esc(a.uid)}</div>
+            </div>
+          </div>
+          <div class="status ${st.cls}">${st.txt}</div>
+        </div>
+
+        <div class="prog-row">
+          <div class="ring">
+            <svg width="56" height="56" viewBox="0 0 56 56">
+              <circle class="bg" cx="28" cy="28" r="24"/>
+              <circle class="fg" cx="28" cy="28" r="24"
+                stroke-dasharray="${ringCirc}"
+                stroke-dashoffset="${ringOff}"/>
+            </svg>
+            <div class="ring-txt">${a.level||1}</div>
+          </div>
+          <div class="prog-meta">
+            <div class="lvl"><span>Level ${a.level||1}</span><span>${fmt(cur)} EXP</span></div>
+            <div class="bar"><div class="bar-fill" style="width:${pct}%"></div></div>
+          </div>
+        </div>
+
+        <div class="cells">
+          <div class="cell"><div class="k">Initial</div><div class="v">${fmt(a.initial_exp)}</div></div>
+          <div class="cell"><div class="k">Current</div><div class="v">${fmt(cur)}</div></div>
+          <div class="cell"><div class="k">Gained</div><div class="v grn">+${fmt(gained)}</div></div>
+        </div>
+
+        <div class="acc-foot">
+          <div class="meta">
+            <span><i class="fa-solid fa-gamepad"></i> ${a.matches_played||0} matches</span>
+            <span><i class="fa-solid fa-clock"></i> ${esc(a.last_match_time||'—')}</span>
+          </div>
+          <div class="acc-acts">
+            <button class="ib" onclick="refreshAcc('${a.uid}',event)" title="Refresh"><i class="fa-solid fa-rotate"></i></button>
+            <button class="ib danger" onclick="deleteAcc('${a.uid}',event)" title="Delete"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ============ RENDER LOGS ============ */
+function renderLogs(){
+  const L = document.getElementById('logs');
+  let list = STATE.logs;
+  if(STATE.logFilter !== 'all'){
+    list = list.filter(l=>l.level===STATE.logFilter);
+  }
+  document.getElementById('log-cnt').textContent = list.length;
+  if(!list.length){
+    L.innerHTML = '<div class="empty" style="padding:40px 20px"><div class="empty-ico" style="width:56px;height:56px;font-size:20px"><i class="fa-solid fa-inbox"></i></div><p>No logs to display</p></div>';
+    return;
+  }
+  const atBottom = L.scrollHeight - L.scrollTop - L.clientHeight < 60;
+  L.innerHTML = list.map(l=>`
+    <div class="log">
+      <span class="log-time">[${esc(l.time)}]</span>
+      <span class="log-msg ${esc(l.level)}">${esc(l.message)}</span>
+    </div>
+  `).join('');
+  if(atBottom) L.scrollTop = L.scrollHeight;
+}
+
+/* ============ FETCH ============ */
+async function fetchStats(){
+  try{
+    const r = await fetch('/api/stats');
+    const d = await r.json();
+
+    STATE.accounts = d.accounts||[];
+    STATE.logs = d.logs||[];
+    STATE.uptime = d.uptime||0;
+    STATE.lastSync = Date.now();
+
+    // stat values with animation
+    animateNum('s-acc', d.total_accounts||0, v=>v);
+    animateNum('s-exp', d.total_gained_exp||0, v=>'+'+fmt(v));
+    animateNum('s-mat', d.total_matches||0, v=>fmt(v));
+    document.getElementById('s-up').textContent = fmtTime(STATE.uptime);
+
+    sparkline('sp-acc', STATE.accounts.length);
+    sparkline('sp-exp', (d.total_gained_exp||0)%100);
+    sparkline('sp-mat', (d.total_matches||0)%100);
+    sparkline('sp-up', STATE.uptime%100);
+
+    renderAcc();
+    if(!STATE.logsCleared) renderLogs();
+  }catch(err){console.error('fetch error',err);}
+}
+
+/* animated counter */
+function animateNum(id,target,formatter){
+  const el = document.getElementById(id);
+  const start = parseInt(el.dataset.v||'0',10)||0;
+  el.dataset.v = target;
+  if(start === target){el.textContent = formatter(target);return;}
+  const dur = 600, t0 = performance.now();
+  function step(t){
+    const p = Math.min(1,(t-t0)/dur);
+    const eased = 1-Math.pow(1-p,3);
+    const cur = Math.round(start + (target-start)*eased);
+    el.textContent = formatter(cur);
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* uptime ticker */
+setInterval(()=>{
+  if(STATE.lastSync){
+    const extra = Math.floor((Date.now()-STATE.lastSync)/1000);
+    document.getElementById('s-up').textContent = fmtTime(STATE.uptime+extra);
+  }
+},1000);
+
+/* search binding */
+document.getElementById('q').addEventListener('input',e=>{
+  STATE.query = e.target.value;
+  renderAcc();
+});
+
+/* init */
+fetchStats();
+setInterval(fetchStats,3000);
+</script>
+</body>
+</html>
