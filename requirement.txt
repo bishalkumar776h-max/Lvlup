@@ -1,0 +1,12 @@
+httpx
+requests
+google-play-scraper
+pycryptodome
+protobuf
+protobuf-decoder
+aiohttp
+PyJWT
+psutil
+pytz
+python-cfonts
+gunicorn
